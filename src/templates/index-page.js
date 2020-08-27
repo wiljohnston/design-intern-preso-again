@@ -3,7 +3,6 @@
 
 import React from "react";
 import { graphql } from "gatsby";
-import Footer from "~components/Footer";
 import Layout from "~components/Layout";
 import SEO from "~components/SEO";
 
@@ -24,8 +23,6 @@ const IndexPage = ({ data, location }) => {
           <h1 className="grid-end-12 my-8 f3">{frontmatter.title}</h1>
         </section>
       </Layout>
-
-      <Footer />
     </>
   );
 };
