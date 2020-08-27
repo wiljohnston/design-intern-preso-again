@@ -45,6 +45,10 @@ export function getWindowDimensions() {
   let height = 0;
   let width = 0;
 
+  if (typeof window === `undefined`) {
+    return { width, height };
+  }
+
   if (window.innerHeight || document.documentElement || document.body) {
     height =
       window.innerHeight ||

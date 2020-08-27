@@ -5,7 +5,6 @@ import React, { useContext, useState } from "react";
 import { graphql } from "gatsby";
 import Layout from "~components/Layout";
 import SEO from "~components/SEO";
-import { CursorContext } from "~context/CursorContext";
 import Button from "~components/Button";
 
 import Line from "~components/svg/Line";
@@ -14,7 +13,7 @@ import Horizon from "~components/svg/Horizon";
 import HillOne from "~components/svg/HillOne";
 import HillThree from "~components/svg/HillThree";
 import stillStatic from "~assets/images/static.png";
-import DataFall from "~components/DataFall";
+// import DataFall from "~components/DataFall";
 import StaticWall from "~components/StaticWall";
 import CactusOne from "~components/svg/CactusOne";
 import CactusTwo from "~components/svg/CactusTwo";
@@ -28,14 +27,19 @@ import WhereAreWe from "~components/svg/WhereAreWe";
 
 const IndexPage = ({ data, location }) => {
   let motion = null;
+  let cursorContext = { cursorCenterDeltaX: 0, cursorCenterDeltaY: 0 };
+
   if (typeof window !== `undefined`) {
     // eslint-disable-next-line
     motion = require(`framer-motion`).motion;
+    // eslint-disable-next-line
+    const CursorContext = require("~context/CursorContext").CursorContext;
+    cursorContext = useContext(CursorContext);
   }
 
   const { frontmatter } = data.markdownRemark;
 
-  const { cursorCenterDeltaX, cursorCenterDeltaY } = useContext(CursorContext);
+  const { cursorCenterDeltaX, cursorCenterDeltaY } = cursorContext;
   const cursorAnimate = magnitude => ({
     x: magnitude * cursorCenterDeltaX,
     y: magnitude * cursorCenterDeltaY
