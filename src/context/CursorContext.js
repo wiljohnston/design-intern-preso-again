@@ -10,18 +10,22 @@ const CursorProvider = ({ children }) => {
   const [cursorCenterDeltaY, setCursorCenterDeltaY] = useState(0);
   const [cursorPositionX, setCursorPositionX] = useState(0);
   const [cursorPositionY, setCursorPositionY] = useState(0);
-  const [windowHeight, setWindowHeight] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(
+    getWindowDimensions().height
+  );
+  const [windowWidth, setWindowWidth] = useState(getWindowDimensions().width);
 
   //
 
   const handleMousemove = e => {
-    setCursorCenterDeltaX(-(0.5 - e.pageX / windowWidth));
-    setCursorCenterDeltaY(
-      -(0.5 - (e.pageY - window.pageYOffset) / windowHeight)
-    );
-    setCursorPositionX(e.pageX);
-    setCursorPositionY(e.pageY - window.pageYOffset);
+    if (typeof window !== `undefined`) {
+      setCursorCenterDeltaX(-(0.5 - e.pageX / windowWidth));
+      setCursorCenterDeltaY(
+        -(0.5 - (e.pageY - window.pageYOffset) / windowHeight)
+      );
+      setCursorPositionX(e.pageX);
+      setCursorPositionY(e.pageY - window.pageYOffset);
+    }
   };
 
   const handleResize = () => {
