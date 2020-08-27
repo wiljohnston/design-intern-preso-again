@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-title: Home
+title: Wil's Design Internship Extravaganza
 seoDescription: ""
 seoKeywords: ""
 ---
