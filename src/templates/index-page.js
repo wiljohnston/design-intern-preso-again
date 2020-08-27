@@ -247,12 +247,17 @@ const IndexPage = ({ data, location }) => {
               />
             </article>
 
-            <Button
+            <article
               className="grid-end-3 grid-start-1 absolute"
-              text="and the grid,"
               style={{ bottom: `18vw` }}
-              onClick={() => setShowGridLines(!showGridLines)}
-            />
+            >
+              <Button
+                text="and the grid,"
+                onClick={() =>
+                  setShowGridLines(oldShowGridLines => !oldShowGridLines)
+                }
+              />
+            </article>
 
             <div
               className={`grid-end-1 grid-start-2 transition-top absolute overflow-visible ${ball.balance[balanceIndex]} pointer-events-none`}
