@@ -82,23 +82,25 @@ const IndexPage = ({ data, location }) => {
       />
 
       <Layout className="index-page w-full relative">
-        <section className="min-h-screen grid border-b-2 border-solid py-8 f1">
-          <h1 className="animation-appear-right grid-end-12 z-10 f1">
-            {frontmatter.title}
-          </h1>
+        <section className="min-h-screen grid items-center border-b-2 border-solid py-8 f1">
+          <div className="grid-end-12 relative mb-24 lg:mb-0">
+            <h1 className="animation-appear-right z-10 f1">
+              {frontmatter.title}
+            </h1>
 
-          {motion !== null ? (
-            <motion.div
-              className="absolute top-30pc right-0 w-1/5"
-              animate={cursorAnimate(50)}
-            >
-              <Spaceship className="w-full relative" />
-            </motion.div>
-          ) : (
-            <div className="absolute top-30pc right-0 w-1/5">
-              <Spaceship className="w-full relative" />
-            </div>
-          )}
+            {motion !== null ? (
+              <motion.div
+                className="absolute top-30pc right-0 w-1/5"
+                animate={cursorAnimate(50)}
+              >
+                <Spaceship className="w-full relative" />
+              </motion.div>
+            ) : (
+              <div className="absolute top-30pc right-0 w-1/5">
+                <Spaceship className="w-full relative" />
+              </div>
+            )}
+          </div>
         </section>
 
         <section className="w-full flex items-top justify-center relative">
