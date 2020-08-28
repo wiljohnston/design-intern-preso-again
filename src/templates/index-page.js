@@ -14,7 +14,7 @@ import Spaceship from "~components/Spaceship";
 import Horizon from "~components/svg/Horizon";
 import HillOne from "~components/svg/HillOne";
 import HillThree from "~components/svg/HillThree";
-import stillStatic from "~assets/images/static.png";
+import Beam from "~components/svg/Beam";
 import StaticWall from "~components/StaticWall";
 import CactusOne from "~components/svg/CactusOne";
 import CactusTwo from "~components/svg/CactusTwo";
@@ -99,8 +99,13 @@ const IndexPage = ({ data, location }) => {
             {motion !== null ? (
               <motion.div
                 className="absolute top-30pc right-0 w-1/5"
+                style={{ top: `27%`, right: `5%` }}
                 animate={cursorAnimate(50)}
               >
+                <Beam
+                  className="w-full absolute"
+                  style={{ top: `60%`, left: `-9%` }}
+                />
                 <Spaceship className="w-full relative" img={staticGIF} />
               </motion.div>
             ) : (
