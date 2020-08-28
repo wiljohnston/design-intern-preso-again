@@ -1,7 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ className, color, onClick, text, transparent, style }) => {
+const Button = ({
+  className,
+  color,
+  onClick,
+  onMouseDown,
+  onMouseUp,
+  text,
+  transparent,
+  style
+}) => {
   let motion = null;
   if (typeof window !== `undefined`) {
     // eslint-disable-next-line
@@ -15,6 +24,8 @@ const Button = ({ className, color, onClick, text, transparent, style }) => {
         transparent ? `button--transparent` : ``
       } ${className} relative b1`}
       onClick={onClick}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
     >
       {text}
     </button>
@@ -40,6 +51,8 @@ Button.defaultProps = {
   color: ``,
   className: ``,
   onClick: () => {},
+  onMouseDown: () => {},
+  onMouseUp: () => {},
   text: `Button`,
   transparent: false,
   style: {}
@@ -49,6 +62,8 @@ Button.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func,
+  onMouseDown: PropTypes.func,
+  onMouseUp: PropTypes.func,
   text: PropTypes.string,
   transparent: PropTypes.bool,
   style: PropTypes.shape({})

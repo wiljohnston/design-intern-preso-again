@@ -7,13 +7,14 @@ import Layout from "~components/Layout";
 import SEO from "~components/SEO";
 import Button from "~components/Button";
 
+// import DataFall from "~components/DataFall";
+import TextCycler from "~components/TextCycler";
 import Line from "~components/svg/Line";
 import Spaceship from "~components/Spaceship";
 import Horizon from "~components/svg/Horizon";
 import HillOne from "~components/svg/HillOne";
 import HillThree from "~components/svg/HillThree";
 import stillStatic from "~assets/images/static.png";
-// import DataFall from "~components/DataFall";
 import StaticWall from "~components/StaticWall";
 import CactusOne from "~components/svg/CactusOne";
 import CactusTwo from "~components/svg/CactusTwo";
@@ -24,6 +25,7 @@ import Smoke from "~components/svg/Smoke";
 import SteveDidYouFillUp from "~components/svg/SteveDidYouFillUp";
 import FuckingHellNotAgain from "~components/svg/FuckingHellNotAgain";
 import WhereAreWe from "~components/svg/WhereAreWe";
+import staticGIF from "~assets/images/static.gif";
 
 const IndexPage = ({ data, location }) => {
   let motion = null;
@@ -64,7 +66,7 @@ const IndexPage = ({ data, location }) => {
     }
   };
 
-  const colours = [null, `red`, `green`, `purple`, `orange`, `pink`];
+  const colours = [`#DFDFDF`, `red`, `green`, `purple`, `orange`, `pink`];
 
   const [balanceIndex, setBalanceIndex] = useState(0);
   const [scaleIndex, setScaleIndex] = useState(0);
@@ -73,6 +75,8 @@ const IndexPage = ({ data, location }) => {
   const [showGridLines, setShowGridLines] = useState(false);
   const [showStaticOverlay, setShowStaticOverlay] = useState(false);
   const [typographyClicks, setTypographyClicks] = useState(0);
+  const [hillHasDepth, setHillHasDepth] = useState(false);
+  const [textCyclerIsCycling, setTextCyclerIsCycling] = useState(false);
 
   const { cactusOne, cactusTwo, bush, ball } = plantProperties;
 
@@ -97,11 +101,11 @@ const IndexPage = ({ data, location }) => {
                 className="absolute top-30pc right-0 w-1/5"
                 animate={cursorAnimate(50)}
               >
-                <Spaceship className="w-full relative" />
+                <Spaceship className="w-full relative" img={staticGIF} />
               </motion.div>
             ) : (
               <div className="absolute top-30pc right-0 w-1/5">
-                <Spaceship className="w-full relative" />
+                <Spaceship className="w-full relative" img={staticGIF} />
               </div>
             )}
           </div>
@@ -144,21 +148,18 @@ const IndexPage = ({ data, location }) => {
             </div>
           </div>
 
-          {motion !== null ? (
-            <motion.div
-              animate={cursorAnimate(10)}
-              className="absolute -z-20 left-0 bottom-0 right-0"
-            >
-              <Horizon className="w-full" />
-            </motion.div>
-          ) : (
-            <div className="absolute -z-20 left-0 bottom-0 right-0">
-              <Horizon className="w-full" />
-            </div>
-          )}
+          <div className="absolute -z-20 left-0 bottom-0 right-0">
+            <Horizon className="w-full" />
+          </div>
 
-          <article className="w-1/2 absolute bottom-0 mb-48 mr-32">
-            <p className="b1">and depth,</p>
+          <article className="w-1/2 absolute bottom-0 mb-40 mr-24">
+            <Button
+              className="w-content"
+              text="and depth,"
+              onClick={() => {
+                setHillHasDepth(oldBool => !oldBool);
+              }}
+            />
           </article>
 
           <div
@@ -176,6 +177,12 @@ const IndexPage = ({ data, location }) => {
           style={{ marginTop: `-8rem` }}
         >
           <HillOne className="w-full top-0 left-0 right-0" />
+          <HillOne
+            colour="white"
+            className={`transition-opacity w-full absolute top-0 left-0 right-0 ${
+              hillHasDepth ? `opacity-0` : `opacity-1`
+            }`}
+          />
 
           <div
             className="w-full absolute -z-10 overflow-hidden"
@@ -323,11 +330,17 @@ const IndexPage = ({ data, location }) => {
             >
               <Smoke
                 className="w-2/5 absolute -z-10 overflow-visible"
-                style={{ bottom: `42%`, left: `-13%` }}
+                style={{ bottom: `50%`, left: `-17%` }}
                 colour={colours[colourIndex]}
               />
 
-              <Spaceship maskColour="#F5F5F5" img={stillStatic} />
+              <Spaceship
+                maskColour="#F5F5F5"
+                glassStyle={{
+                  backgroundColor: colours[colourIndex],
+                  opacity: 0.2
+                }}
+              />
 
               {typographyClicks > 0 && (
                 <WhereAreWe
@@ -371,7 +384,7 @@ const IndexPage = ({ data, location }) => {
               <Button
                 className="absolute"
                 text="and typography,"
-                style={{ top: `55vw` }}
+                style={{ top: `50vw` }}
                 onClick={() => {
                   setTypographyClicks(oldNum => oldNum + 1);
                 }}
@@ -379,10 +392,29 @@ const IndexPage = ({ data, location }) => {
             </article>
 
             <article
-              className="grid-end-4 h-full grid-start-2 flex items-end"
+              className="grid-end-4 h-full grid-start-2 relative flex flex-col justify-end"
               style={{ paddingBottom: `13vw` }}
             >
-              <p className="b1">and heaps more stuff..</p>
+              <Button
+                className="w-content whitespace-no-wrap"
+                onMouseDown={() => {
+                  setTextCyclerIsCycling(true);
+                }}
+                onMouseUp={() => {
+                  setTextCyclerIsCycling(false);
+                }}
+                text="and heaps more stuff.."
+              />
+
+              <div
+                className="absolute pt-20"
+                style={{ transform: `translateY(100%)` }}
+              >
+                <TextCycler
+                  className={`opacity-${textCyclerIsCycling ? 1 : 0} caption`}
+                  cycling={textCyclerIsCycling}
+                />
+              </div>
             </article>
           </div>
         </section>

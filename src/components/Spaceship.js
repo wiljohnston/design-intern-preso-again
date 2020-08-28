@@ -1,23 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import SpaceshipFrame from "~components/svg/SpaceshipFrame";
-import staticGIF from "~assets/images/static.gif";
 
-const Spaceship = ({ className, style, maskColour, img }) => {
+const Spaceship = ({
+  className,
+  style,
+  maskColour,
+  img,
+  glassStyle: injectedGlassSyle
+}) => {
+  const glassStyle = {
+    marginLeft: `3.5%`,
+    marginTop: `9.6%`,
+    width: `52%`,
+    height: `57.6%`,
+    borderRadius: `1000px`,
+    position: `absolute`,
+    zIndex: -10,
+    top: `50%`,
+    left: `50%`,
+    transform: `translate3d(-50%, -50%, 0)`,
+    ...injectedGlassSyle
+  };
+
   return (
     <div className={className} style={style}>
       <figure className="w-full relative">
-        <img
-          src={img || staticGIF}
-          alt="static"
-          style={{
-            marginLeft: `3.5%`,
-            marginTop: `9.6%`,
-            width: `52%`,
-            borderRadius: `1000px`
-          }}
-          className="absolute -z-10 transform-center"
-        />
+        {img ? (
+          <img src={img} style={glassStyle} alt="static" />
+        ) : (
+          <div style={glassStyle} />
+        )}
 
         <SpaceshipFrame
           maskColour={maskColour}
@@ -32,10 +45,12 @@ Spaceship.defaultProps = {
   className: ``,
   img: null,
   maskColour: null,
-  style: {}
+  style: {},
+  glassStyle: {}
 };
 
 Spaceship.propTypes = {
+  glassStyle: PropTypes.shape({}),
   className: PropTypes.string,
   img: PropTypes.string,
   style: PropTypes.shape({}),
