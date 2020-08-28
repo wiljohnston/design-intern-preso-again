@@ -386,14 +386,16 @@ const IndexPage = ({ data, location }) => {
             </article>
 
             <article className="grid-end-3 h-full grid-start-10 relative">
-              <Button
-                className="absolute"
-                text="and typography,"
-                style={{ top: `50vw` }}
-                onClick={() => {
-                  setTypographyClicks(oldNum => oldNum + 1);
-                }}
-              />
+              <div className="absolute" style={{ top: `50vw` }}>
+                <Button
+                  className="mb-2"
+                  text="and typography,"
+                  onClick={() => {
+                    setTypographyClicks(oldNum => oldNum + 1);
+                  }}
+                />
+                <p className="caption">↑ click x3</p>
+              </div>
             </article>
 
             <article
@@ -401,7 +403,7 @@ const IndexPage = ({ data, location }) => {
               style={{ paddingBottom: `13vw` }}
             >
               <Button
-                className="w-content whitespace-no-wrap"
+                className="w-content whitespace-no-wrap mb-2"
                 onMouseDown={() => {
                   setTextCyclerIsCycling(true);
                 }}
@@ -410,6 +412,7 @@ const IndexPage = ({ data, location }) => {
                 }}
                 text="and heaps more stuff.."
               />
+              <p className="caption">↑ hold</p>
             </article>
 
             <div
