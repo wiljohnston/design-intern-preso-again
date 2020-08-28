@@ -24,7 +24,7 @@ const TextCycler = ({ className, style, cycling, interval }) => {
   }, [cycling]);
 
   return (
-    <div className={className} style={style} viewBox="0 0 1440 868" fill="none">
+    <div className={className} style={style}>
       {textArray[currentIndex]}
     </div>
   );

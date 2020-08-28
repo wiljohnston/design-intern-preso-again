@@ -405,17 +405,23 @@ const IndexPage = ({ data, location }) => {
                 }}
                 text="and heaps more stuff.."
               />
-
-              <div
-                className="absolute pt-20"
-                style={{ transform: `translateY(100%)` }}
-              >
-                <TextCycler
-                  className={`opacity-${textCyclerIsCycling ? 1 : 0} caption`}
-                  cycling={textCyclerIsCycling}
-                />
-              </div>
             </article>
+
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                transform: `translateY(80%)`,
+                width: `25vw`,
+                height: `auto`,
+                bottom: 0,
+                left: `calc(100% / 12)`
+              }}
+            >
+              <TextCycler
+                className={`opacity-${textCyclerIsCycling ? 1 : 0} caption`}
+                cycling={textCyclerIsCycling}
+              />
+            </div>
           </div>
         </section>
 
